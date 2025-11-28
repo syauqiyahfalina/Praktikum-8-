@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parkir STT-NF</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #f9e3d2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;  
+        }
+
+        .kotak {
+            height: 380px;
+            width: 500px;
+            border: 2px;
+            box-shadow: 0 2px 10px black;
+            background-color:rgb(255, 243, 229);
+            border-radius: 25px;
+        }
+
+        h1 {
+            color: rgb(90, 45, 45);
+        }
+
+        label {
+            font-weight: bold;
+            color: rgb(66, 35, 35);
+        }
+
+        input[type="number"] {
+            width: 225px;
+            padding: 10px 14px;
+            margin: 8px 0;
+            border: 2px solid #7f7064;
+            border-radius: 10px;
+            font-size: 1em;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        button {
+            height: 33px;
+            width: 120px;
+            background-color: rgb(90, 45, 45);
+            border: 0;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+        }
+
+        span {
+            font-weight: bold;
+            font-size: 18px;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="kotak">
+        <h1>Harga Parkir STT</h1>
+        <label for="in">Jam Masuk</label>
+        <input type="number" id="in" placeholder="Masukkan Waktu Masuk">
+        <br><br>
+
+        <label for="out">Jam Keluar</label>
+        <input type="number" id="out" placeholder="Masukkan Waktu Keluar">
+        <br><br>
+
+        <span id="durasi"></span>
+        <br><br>
+        <span id="hasil" style="color: rgb(179, 0, 0);"></span>
+        <br><br>
+
+        <button type="button" onclick="hitung_parkir()">Hitung Parkir</button>
+        <br>
+    </div>
+
+    <script>
+        function hitung_parkir() {
+            let jam_masuk = parseInt(document.getElementById("in").value);
+            let jam_keluar = parseInt(document.getElementById("out").value);
+
+            let durasi = jam_keluar - jam_masuk;
+
+            let tarif_awal = 3000;
+            let tarif_lanjut = 0;
+
+            if (durasi > 2) {
+                tarif_lanjut = (durasi - 2) * 1000;
+            }
+
+            let total = tarif_awal + tarif_lanjut;
+
+            document.getElementById("durasi").innerHTML = "Durasi = " + durasi + " jam";
+            document.getElementById("hasil").innerHTML = "Total = Rp. " + total;
+        }
+    </script>
+</body>
+</html>
